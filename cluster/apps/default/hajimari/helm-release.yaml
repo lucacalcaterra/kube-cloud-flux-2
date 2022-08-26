@@ -114,7 +114,7 @@ spec:
           hajimari.io/icon: "weather-sunset"
           nginx.ingress.kubernetes.io/auth-response-headers: Authorization
           nginx.ingress.kubernetes.io/auth-url: "https://oauth2.${SECRET_DOMAIN}/oauth2/auth"
-          nginx.ingress.kubernetes.io/auth-signin: "https://oauth2.${SECRET_DOMAIN}/oauth2/start?rd=https://$host"
+          nginx.ingress.kubernetes.io/auth-signin: "https://oauth2.${SECRET_DOMAIN}/oauth2/start?rd=$escaped_request_uri"
           nginx.ingress.kubernetes.io/configuration-snippet: |
             auth_request_set $name_upstream_1 $upstream_cookie_name_1;
 

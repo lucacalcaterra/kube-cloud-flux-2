@@ -117,7 +117,7 @@ spec:
           #nginx.ingress.kubernetes.io/auth-url: "https://oauth2.${SECRET_DOMAIN}/oauth2/auth"
           #nginx.ingress.kubernetes.io/auth-signin: "https://oauth2.${SECRET_DOMAIN}/oauth2/start?rd=$escaped_request_uri"
           nginx.ingress.kubernetes.io/auth-response-headers: X-Auth-Request-User,X-Auth-Request-Email
-          nginx.ingress.kubernetes.io/auth-signin: http://oauth2-proxy.${SECRET_DOMAIN}/oauth2/start
+          nginx.ingress.kubernetes.io/auth-signin: http://oauth2.${SECRET_DOMAIN}/oauth2/start
           nginx.ingress.kubernetes.io/auth-url: http://oauth2-proxy.default.svc.cluster.local/oauth2/auth
           # nginx.ingress.kubernetes.io/configuration-snippet: |
           #   auth_request_set $name_upstream_1 $upstream_cookie_name_1;

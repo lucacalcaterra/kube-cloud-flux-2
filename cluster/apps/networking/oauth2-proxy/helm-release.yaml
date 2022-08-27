@@ -47,6 +47,7 @@ spec:
     extraArgs:
       #cookie-secure: "true"
       cookie-domain: ".${SECRET_DOMAIN}"
+      whitelist-domain: ".${SECRET_DOMAIN}"
       email-domain: "*"
       provider: "google"
       pass-access-token: true

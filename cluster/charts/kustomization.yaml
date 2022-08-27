@@ -12,5 +12,6 @@ resources:
   - longhorn.yaml
   - metallb.yaml
   - metrics-server.yaml
+  - oauth2-proxy.yaml
   - stakater.yaml
   - weaveworks-kured.yaml

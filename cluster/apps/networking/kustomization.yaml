@@ -8,3 +8,4 @@ resources:
   - external-dns
   - ingress-nginx
   - k8s-gateway
+  - oauth2-proxy

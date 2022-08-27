@@ -129,7 +129,7 @@ spec:
           - host: "hajimari.${SECRET_DOMAIN}"
             paths:
               - path: /
-                pathType: ImplementationSpecific
+                pathType: Prefix
                 backend:
                   service:
                     name: hajimari

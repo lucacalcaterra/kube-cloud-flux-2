@@ -41,7 +41,7 @@ spec:
     config:
       clientID: ${SECRET_GOOGLEOAUTH2_CLIENT_ID}
       clientSecret: ${SECRET_GOOGLEOAUTH2_CLIENT_SECRET}
-      #cookieSecret: "aUxaSlpmbURkSXZmSnUzV3RNT2wwNzVOQUkzWHh3bSs="
+      cookieSecret: ${SECRET_GOOGLEOAUTH2_COOKIE_SECRET}
     #extraArgs:
-      #cookie-secure: "true"
-      #cookie-domain: "${SECRET_DOMAIN}"
+    #cookie-secure: "true"
+    #cookie-domain: "${SECRET_DOMAIN}"

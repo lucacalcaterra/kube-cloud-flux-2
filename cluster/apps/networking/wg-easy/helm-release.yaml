@@ -1,0 +1,46 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: wg-easy
+  namespace: networking
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: wg-easy
+      version: 1.0.23
+      sourceRef:
+        kind: HelmRepository
+        name: truecharts
+        namespace: flux-system
+      interval: 15m
+  values:
+    env:
+      TZ: ${CONFIG_TIMEZONE}
+    secretEnv:
+      PASSWORD: ${SECRET_WG_ACCESS_SERVER_ADMIN_PASSWORD}
+    service:
+      vpn:
+        type: LoadBalancer
+        loadBalancerIP: ${CONFIG_LB_IP_WG_EASY}
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "nginx"
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "weather-sunset"
+          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+          #nginx.ingress.kubernetes.io/auth-signin: "https://oauth2.${SECRET_DOMAIN}/oauth2/start?rd=https://$host"
+          #nginx.ingress.kubernetes.io/auth-url: "https://oauth2.${SECRET_DOMAIN}/oauth2/auth"
+        hosts:
+          - host: "wg-easy.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - "wg-easy.${SECRET_DOMAIN}"
+            secretName: "wg-easy-tls"

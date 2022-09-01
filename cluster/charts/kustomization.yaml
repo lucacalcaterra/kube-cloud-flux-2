@@ -14,4 +14,5 @@ resources:
   - metrics-server.yaml
   - oauth2-proxy.yaml
   - stakater.yaml
+  - truecharts.yaml
   - weaveworks-kured.yaml

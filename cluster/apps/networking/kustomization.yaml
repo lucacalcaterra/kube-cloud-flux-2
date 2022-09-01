@@ -9,3 +9,4 @@ resources:
   - ingress-nginx
   - k8s-gateway
   - oauth2-proxy
+  - wg-easy

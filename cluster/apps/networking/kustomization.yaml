@@ -8,5 +8,6 @@ resources:
   - external-dns
   - ingress-nginx
   - k8s-gateway
+  - keycloack
   - oauth2-proxy
   - wg-easy

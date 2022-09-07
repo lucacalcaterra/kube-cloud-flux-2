@@ -1,0 +1,41 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: keycloack
+  namespace: networking
+spec:
+  interval: 15m
+  chart:
+    spec:
+      # renovate: registryUrl=https://oauth2-proxy.github.io/manifests
+      chart: keycloack
+      version: 9.8.0
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami
+        namespace: flux-system
+      interval: 15m
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    ingress:
+      enabled: true
+      className: "nginx"
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-production"
+        external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+        external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
+        external-dns/is-public: "true"
+        hajimari.io/enable: "true"
+        hajimari.io/icon: "weather-sunset"
+      hostname: "keycloack.${SECRET_DOMAIN}"
+      tls:
+        - hosts:
+            - "keycloack.${SECRET_DOMAIN}"
+          secretName: "keycloack-tls"

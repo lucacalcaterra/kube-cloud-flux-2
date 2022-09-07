@@ -2,14 +2,14 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: keycloack
+  name: keycloak
   namespace: networking
 spec:
   interval: 15m
   chart:
     spec:
       # renovate: registryUrl=https://oauth2-proxy.github.io/manifests
-      chart: keycloack
+      chart: keycloak
       version: 9.8.0
       sourceRef:
         kind: HelmRepository
@@ -34,8 +34,8 @@ spec:
         external-dns/is-public: "true"
         hajimari.io/enable: "true"
         hajimari.io/icon: "weather-sunset"
-      hostname: "keycloack.${SECRET_DOMAIN}"
+      hostname: "keycloak.${SECRET_DOMAIN}"
       tls:
         - hosts:
-            - "keycloack.${SECRET_DOMAIN}"
-          secretName: "keycloack-tls"
+            - "keycloak.${SECRET_DOMAIN}"
+          secretName: "keycloak-tls"
